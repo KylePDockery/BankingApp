@@ -13,15 +13,15 @@ public class Account {
     }
 
     void deposit(int amount){
-        if (amount != 0){
-            balance = balance + amount;
+        if (amount > 0){
+            balance += amount;
             previousTransaction = amount;
         }
     }
 
     void withdraw(int amount){
-        if(amount != 0){
-            balance = balance - amount;
+        if(amount > 0){
+            balance -= amount;
             previousTransaction = -amount;
         }
     }
@@ -45,13 +45,7 @@ void calculateInterest(int years){
     System.out.println("The current interest rate is " + (100 + interestRate));
     System.out.println("After " + years + " years, the balance will be: " + newBalance);
 }
-
-void showMenu() {
-    char option = '\0';
-    Scanner scanner = new Scanner(System.in);
-    System.out.println("Welcome, " + customerName + "!");
-    System.out.println("You ID is: " + customerID);
-    System.out.println();
+void menuText(){
     System.out.println("What would you like to do?");
     System.out.println();
     System.out.println("A. Check your balance");
@@ -60,6 +54,15 @@ void showMenu() {
     System.out.println("D. View previous transaction");
     System.out.println("E. Calculate interest");
     System.out.println("F. Exit");
+}
+
+void showMenu() {
+    char option = '\0';
+    Scanner scanner = new Scanner(System.in);
+    System.out.println("Welcome, " + customerName + "!");
+    System.out.println("You ID is: " + customerID);
+    System.out.println();
+    menuText();
 
     do {
         System.out.println();
@@ -74,6 +77,7 @@ void showMenu() {
                 System.out.println("Balance = $" + balance);
                 System.out.println("==============");
                 System.out.println();
+               menuText();
                 break;
 
             case 'B':
@@ -81,23 +85,33 @@ void showMenu() {
                 int amount = scanner.nextInt();
                 deposit(amount);
                 System.out.println();
+                System.out.println("You have deposited " + amount);
+                System.out.println("Your new balance is " + balance);
+                menuText();
                 break;
             case 'C':
                 System.out.println("enter an amount to withdraw: ");
                 int amount2 = scanner.nextInt();
                 withdraw(amount2);
                 System.out.println();
+                System.out.println("You have withdrawn " + amount2);
+                System.out.println("Your new balance is " + balance);
+                menuText();
                 break;
             case 'D':
                 System.out.println("==================");
                 getPreviousTransaction();
                 System.out.println("==================");
                 System.out.println();
+                menuText();
                 break;
             case 'E':
                 System.out.println("Enter how many years of accrued interest: ");
                 int years = scanner.nextInt();
                 calculateInterest(years);
+                System.out.println("Your curreny balance is " + balance);
+                menuText();
+
                 break;
             case 'F':
                 System.out.println("===================");
