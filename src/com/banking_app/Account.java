@@ -57,7 +57,7 @@ void menuText(){
 }
 
 void showMenu() {
-    char option = '\0';
+    char option;
     Scanner scanner = new Scanner(System.in);
     System.out.println("Welcome, " + customerName + "!");
     System.out.println("You ID is: " + customerID);
@@ -72,15 +72,14 @@ void showMenu() {
         System.out.println();
 
         switch (option) {
-            case 'A':
+            case 'A' -> {
                 System.out.println("==============");
                 System.out.println("Balance = $" + balance);
                 System.out.println("==============");
                 System.out.println();
-               menuText();
-                break;
-
-            case 'B':
+                menuText();
+            }
+            case 'B' -> {
                 System.out.println("Enter an amount to deposit");
                 int amount = scanner.nextInt();
                 deposit(amount);
@@ -88,8 +87,8 @@ void showMenu() {
                 System.out.println("You have deposited " + amount);
                 System.out.println("Your new balance is " + balance);
                 menuText();
-                break;
-            case 'C':
+            }
+            case 'C' -> {
                 System.out.println("enter an amount to withdraw: ");
                 int amount2 = scanner.nextInt();
                 withdraw(amount2);
@@ -97,28 +96,23 @@ void showMenu() {
                 System.out.println("You have withdrawn " + amount2);
                 System.out.println("Your new balance is " + balance);
                 menuText();
-                break;
-            case 'D':
+            }
+            case 'D' -> {
                 System.out.println("==================");
                 getPreviousTransaction();
                 System.out.println("==================");
                 System.out.println();
                 menuText();
-                break;
-            case 'E':
+            }
+            case 'E' -> {
                 System.out.println("Enter how many years of accrued interest: ");
                 int years = scanner.nextInt();
                 calculateInterest(years);
-                System.out.println("Your curreny balance is " + balance);
+                System.out.println("Your current balance is " + balance);
                 menuText();
-
-                break;
-            case 'F':
-                System.out.println("===================");
-                break;
-            default:
-                System.out.println("Error: invalid option. Please enter another option: A, B, C, D, E, or F");
-                break;
+            }
+            case 'F' -> System.out.println("===================");
+            default -> System.out.println("Error: invalid option. Please enter another option: A, B, C, D, E, or F");
         }
     } while (option != 'F');
     System.out.println("Thank you for using my bank app");
